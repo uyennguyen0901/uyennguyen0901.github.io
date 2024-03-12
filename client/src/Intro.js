@@ -84,11 +84,7 @@ const Intro = () => {
       <div className="intro" ref={$intro}>
         <strong>My name is Minh Uyen Nguyen</strong>
         <br />
-        Hailing from Vietnam, I embarked on a journey to the US as an <em>international student</em> to deepen my knowledge in Computer Science with an aspiration to specialize in frontend development.
-        <br />
-        I'm always eager to learn something new every day. My aim is to craft digital experiences that leave a lasting visual impression. 
-        <br />I'm thrilled at the prospect of collaborating with passionate minds to learn and to shape the technology of future.
-        <br /> Currently, I am honing my skills as a frontend developer, with the goal of working intensively after graduation.
+        As a motivated individual from Vietnam, I journeyed to the US to further my education in Computer Science, with a keen focus on frontend development. Fueled by a passion for continuous learning, my goal is to create digital experiences that are not only functional but visually impactful. Excited to collaborate with like-minded professionals, I aim to contribute to and learn from the advancements in technology. Currently, I am sharpening my frontend development skills, eagerly anticipating the opportunity to apply my knowledge in a professional setting post-graduation.
       </div>
     </div>
   )

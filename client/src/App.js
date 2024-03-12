@@ -5,8 +5,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Preloader from './Preloader';
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import $ from 'jquery';
 import yensao from './imgs/Yensao.png'
+import foxipe from './imgs/Foxipe.png'
+import animation from './imgs/animationgame.png'
+import hole from './imgs/holeinground.png'
 import Option from './OptionsList';
 import Intro from './Intro';
 
@@ -76,6 +78,10 @@ function App() {
     e.preventDefault(); 
 
     if (formData.name && formData.subject && formData.message) {
+      // console.log(formData.name);
+      // console.log(formData.subject);
+      // console.log(formData.message);
+      // console.log(formData.email);
         if (validateEmail(formData.email)) {
             // Your logic for a successful form submission goes here
             setIsSent(true);
@@ -85,6 +91,26 @@ function App() {
     } else {
         alert('Please fill out all the fields!');
     }
+  fetch('http://localhost:3000/send-email', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: formData.name,
+    email: formData.email,
+    subject: formData.subject,
+    message: formData.message,
+  }),
+})
+.then(response => response.json()) // Ensuring response is parsed as JSON
+.then(data => {
+  // console.log(data);
+  setIsSent(true); // Update state based on successful operation
+})
+.catch(error => console.error('Error:', error));
+
+
   };
 
   return (
@@ -133,12 +159,15 @@ function App() {
               <h3 class="resume-title">Sumary</h3>
               <div class="resume-item pb-0">
                 <h4>Minh Uyen Nguyen</h4>
-                <p><em>#Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+                <p>
+                  <em>
+                  </em>
+                </p>
                 <p>
                 <ul>
-                  <li>2645 1st Ave, Minneapolis, MN 55408</li>
-                  <li>(612) 438-8177</li>
-                  <li>uyenuyennguyen999@gmail.com</li>
+                  <li>Minneapolis, MN 55408</li>
+                  <li>(XXX) XXX-XXXX</li>
+                  <li>knnguy5105@gmail.com</li>
                 </ul>
                 </p>
               </div>
@@ -203,17 +232,17 @@ function App() {
             <div class="col-lg-6">
               <ProgressBar label="HTML" percentage={100} />
               <ProgressBar label="CSS" percentage={75} />
-              <ProgressBar label="JavaScript" percentage={75} />
+              <ProgressBar label="JavaScript" percentage={70} />
               <ProgressBar label="React JS" percentage={70} />
               <ProgressBar label="Node JS" percentage={65} />
               <ProgressBar label="Express" percentage={50} />
-              <ProgressBar label="SQL" percentage={65} />
+              <ProgressBar label="SQL" percentage={75} />
             </div>
             <div class="col-lg-6">
               <ProgressBar label="C" percentage={65} />
               <ProgressBar label="C++" percentage={55} />
-              <ProgressBar label="Python" percentage={55} />
-              <ProgressBar label="Java" percentage={50} />
+              <ProgressBar label="Python" percentage={75} />
+              <ProgressBar label="Java" percentage={55} />
             </div>
           </div>
         </div>
@@ -224,39 +253,51 @@ function App() {
         <div class="container" data-aos="fade-up"  id="projects">
           <div class="section-title">
             <h2>Projects</h2>
-            <br />
-            <h4>Yen Sao Product Page:</h4>
-            <p>
-            Yen Sao is a comprehensive product page designed to provide users with all the information they need about the product. Built with modern design aesthetics and user-centric navigation, it gives an in-depth insight into the product features, benefits, and unique selling propositions. It's not just a product page, but a platform that creates a seamless user experience, ensuring that potential customers get all the relevant information they need. Check out the codebase by clicking the arrow to dive deeper into its features.
-            </p>
-            <h4>Drone Simulation Class Project:</h4>
-            <p>The Drone Simulation project is a state-of-the-art simulation designed as part of a class assignment. It showcases the dynamics and mechanics of drone movements in a virtual space. Leveraging advanced programming techniques and real-world physics, this simulation provides a realistic feel of drone operations. It's not only an academic project but also a testament to the skills and knowledge acquired throughout the course. Dive into the source code to get a grasp of the intricacies involved in its development.</p>
-            <div className="options">
-              <Option 
-                backgroundUrl={yensao}
-                main="Yen Sao" 
-                sub="Product Page"
-                link="https://github.com/uyennguyen0901/YenSao.github.io"
-              />
-              <Option 
-                backgroundUrl="https://www.youtube.com/embed/LEApuYWwNsk" 
-                main="Drone Simulation" 
-                sub="Class Project"
-                link="https://github.com/uyennguyen0901/Drone_Simulation"
-              />
-              {/* <Option 
-                backgroundUrl="https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg" 
-                main="Oretemauw" 
-                sub="Omuke trughte a otufta"
-                link="https://youtube.com"
-              /> */}
-              {/* <Option 
-                backgroundUrl="https://www.youtube.com/embed/LEApuYWwNsk" 
-                main="Oretemauw" 
-                sub="Omuke trughte a otufta" 
-                link="https://youtube.com"
-              /> */}
+            <div class="project">
+              <div class="project-left">
+                <a href="https://project-1-airfox.onrender.com/">
+                  <img src={foxipe} alt="foxipe"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Foxipe</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
             </div>
+            <div class="project">
+              <div class="project-left">
+                <a href="https://csci-4611-spring-2024.github.io/assignment-2-uyennguyen0901/">
+                  <img src={hole} alt="hole"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Hole in the Ground</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
+            </div>
+            {/* <div class="project">
+              <div class="project-left">
+                <a href="#">
+                  <img src={yensao} alt="yensao"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Yen Sao Phuong Dinh</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
+            </div> */}
+            <div class="project">
+              <div class="project-left">
+                <a href="https://minhuyen.fun/">
+                  <img src={animation} alt="animation"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Animation in Game</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
+            </div>
+            {/* <div class="project">
+              <div class="project-left">
+                <a href="#">
+                  <img src={yensao} alt="yensao"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Yen Sao Phuong Dinh</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -271,7 +312,6 @@ function App() {
             <div class="row justify-content-center">
               <div class="col-lg-6">
                 <form action="/send-email" method="post" role="form" class="email-form">
-                  
                   <div class="form-group mt-3">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required onChange={e => setFormData({ ...formData, name: e.target.value })} />
                   </div>
@@ -286,9 +326,8 @@ function App() {
                     <textarea class="form-control" name="message" rows="5" placeholder="Message" required onChange={e => setFormData({ ...formData, message: e.target.value })}></textarea>
                   </div>
                   <div class={`my-3 ${isSent ? 'd-block' : 'd-none'}`}>
-                    <div class="loading">Loading</div>
                     <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                    <div class="sent-message">Thank you for reaching out! I'll get back to you within two business days.</div>
                   </div>
                   <div class="text-center">
                     <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND" onClick={handleClick}>
@@ -309,13 +348,13 @@ function App() {
                     <li className="list-group-item d-flex justify-content-between border-0">
                       <i class="bi bi-telephone-fill mr-4 larger-icon"></i>
                       <span className="contact-text phone">
-                        <a href="tel:1-612-438-8177" title="Give me a call">(612) 438-8177</a>
+                        <a href="tel:1-612-438-8177" title="Give me a call">(XXX) XXX-XXXX</a>
                       </span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between border-0">
                       <i class="bi bi-envelope-fill mr-4 larger-icon"></i>
                       <span className="contact-text gmail">
-                        <a href="mailto:nguy5105@umn.edu" title="Send me an email">nguy5105@umn.edu</a>
+                        <a href="mailto:knnguy5105@gmail.com" title="Send me an email">knnguy5105@gmail.com</a>
                       </span>
                     </li>
                   </ul>

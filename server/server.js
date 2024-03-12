@@ -1,66 +1,87 @@
+// require('dotenv').config();
+// const express = require('express');
+// const sgMail = require('@sendgrid/mail');
+// const bodyParser = require('body-parser');
+// const app = express();
+// const cors = require('cors');
+// app.use(cors());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// app.post('/send-email', (req, res) => {
+//     const { name, email, subject, message } = req.body;
+//     const msg = {
+//         to: email,
+//         from: process.env.EMAIL,
+//         subject: subject,
+//         text: `Hello ${name},\n\nThank you for reaching out and expressing your interest. I have received your email and truly appreciate you taking the time to write to me. Please know that your message is important, and I am eager to address any questions or comments you may have. I will make sure to catch up with you within the next two business days. Looking forward to our conversation.\n\nBest regards,`
+
+//     };
+
+//     sgMail.send(msg).then(() => {
+//         console.log('Email sent');
+//         res.json({ message: 'Email sent successfully' }); // Changed to JSON response
+//     }).catch((error) => {
+//         console.error(error);
+//         res.status(500).json({ error: 'Failed to send email' }); // Changed to JSON response
+//     });
+// });
+
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
+require('dotenv').config();
 const express = require('express');
+const sgMail = require('@sendgrid/mail');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
-const cors = require('cors');
 app.use(cors());
-// Middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// Create a MySQL connection
-const db = mysql.createConnection({
-   host: "localhost",
-   user: "root",
-   password: "Krysta0988550999!!",
-   database: 'resume'
-});
-db.connect();
+app.post('/send-email', (req, res) => {
+    const { name, email, subject, message } = req.body;
+    
+    // Email sent to the sender as a confirmation
+    const confirmationMsg = {
+        to: email, // Sender's email
+        from: process.env.EMAIL, // Your email (configured in .env)
+        subject: `Confirmation: ${subject}`,
+        text: `Hello ${name},\n\nThank you for reaching out and expressing your interest. I have received your email and truly appreciate you taking the time to write to me. Please know that your message is important, and I am eager to address any questions or comments you may have. I will make sure to catch up with you within the next two business days. Looking forward to our conversation.\n\nBest regards,`
+    };
 
-app.post('/send-email', async (req, res) => {
-   const { name, email, subject, message } = req.body;
+    // Email sent to you with the sender's message
+    const receiveMsg = {
+        to: process.env.YOUR_RECEIVING_EMAIL, // Your email where you want to receive messages
+        from: process.env.EMAIL, // Your email (configured in .env)
+        subject: `New message from ${name}: ${subject}`,
+        text: `You've received a new message from ${name} (${email}).\n\nSubject: ${subject}\n\nMessage: ${message}`
+    };
 
-   // Save to MySQL if needed
-   db.query("INSERT INTO contact_messages(name, email, subject, message) VALUES(?, ?, ?, ?)", [name, email, subject, message], function(error) {
-      if (error) throw error;
-   });
-
-   // Set up Nodemailer
-   let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-         user: 'uyenuyennguyen999@gmail.com',
-         pass: 'uyen0988550999' // use Google App Password for better security
-      }
-   });
-
-   let mailOptions = {
-      from: `${email}`,
-      to: 'uyenuyennguyen999@gmail.com', // can replace with any email
-      subject: `New Message from ${name} - ${subject}`,
-      text: `${message}\n\nSent by: ${email}`
-   };
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-        console.log("Error sending email: ", error);
-        res.json({ error: 'Error sending email!' });
-        } else {
-        console.log("Email sent: ", info.response);
-        res.json({ message: 'Email sent!' });
-        }
+    // Sending confirmation email to the sender
+    sgMail.send(confirmationMsg).then(() => {
+        console.log('Confirmation email sent to sender');
+        // After sending confirmation, send the message to your email
+        sgMail.send(receiveMsg).then(() => {
+            console.log('Email received from sender');
+            res.json({ message: 'Email sent and received successfully' });
+        }).catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Failed to receive email' });
+        });
+    }).catch((error) => {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to send confirmation email' });
     });
- 
-   try {
-      await transporter.sendMail(mailOptions);
-      res.json({ message: 'Email sent!' });
-   } catch (error) {
-      res.json({ error: 'Error sending email!' });
-   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-   console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

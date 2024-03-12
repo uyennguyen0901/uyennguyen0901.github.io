@@ -19,6 +19,26 @@
     color: #363226;
     font-family: "Poppins", sans-serif;
   }
+  a {
+    color: #000;
+    text-decoration: none;
+    position: relative; /* Ensure the overlay positions correctly within */
+  }
+  
+  .link {
+    display: inline-block;
+  }
+  
+  a:visited:after {
+    color: #000;
+  }
+  
+  a:after {
+    position: absolute;
+    right: 10px;
+    color: #fff;
+  }
+  
   
   .resume .resume-item {
     padding: 0 0 20px 20px;
@@ -212,11 +232,33 @@
 
 .send-text {
   display: block;
-  margin-top: 10px;
+  margin-top: 5.5px;
   font: 700 18px 'Lato', sans-serif;
   letter-spacing: 2px;
 }
+.project{
+  padding: 1rem 0;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-top: -1px;
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 500
 
+}
+.project:hover{
+  color:#fff;
+}
+
+.project-left img{
+  width: auto;
+  height: 80px;
+  margin-right: 10px;
+}
 .alt-send-button:hover {
   transform: translate3d(0px, -29px, 0px);
 }
