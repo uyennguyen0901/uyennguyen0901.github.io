@@ -3,14 +3,15 @@ import './App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Preloader from './Preloader';
+import ProjectsSection from './ProjectsSection';
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import yensao from './imgs/Yensao.png'
-import foxipe from './imgs/Foxipe.png'
-import earth from './imgs/Earth.png'
-import animation from './imgs/animationgame.png'
-import survey from './imgs/Living.png'
-import hole from './imgs/holeinground.png'
+// import yensao from './imgs/Yensao.png'
+// import foxipe from './imgs/Foxipe.png'
+// import earth from './imgs/Earth.png'
+// import animation from './imgs/animationgame.png'
+// import survey from './imgs/Living.png'
+// import hole from './imgs/holeinground.png'
 import Option from './OptionsList';
 import Intro from './Intro';
 
@@ -256,7 +257,7 @@ function App() {
         <div class="container" data-aos="fade-up"  id="projects">
           <div class="section-title">
             <h2>Projects</h2>
-            <div class="project">
+            {/* <div class="project">
               <div class="project-left">
                 <a href="https://project-1-airfox.onrender.com/">
                   <img src={foxipe} alt="foxipe"/>
@@ -309,7 +310,8 @@ function App() {
                   <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
                 </a>
               </div>
-            </div>
+            </div> */}
+             <ProjectsSection />
           </div>
         </div>
       </section>

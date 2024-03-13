@@ -238,13 +238,14 @@
 }
 .project{
   padding: 1rem 0;
-  display: block;
+  display: grid;
+  grid-template-columns: 20% 80%;
   position: relative;
   z-index: 1;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   margin-top: -1px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   font-size: 2.5rem;
   font-weight: 500
@@ -258,6 +259,25 @@
   width: auto;
   height: 80px;
   margin-right: 10px;
+}
+.project-left a{
+  text-decoration: none;
+
+}
+.project-right{
+  margin-left: 10px;
+}
+.project-right a{
+  text-decoration: none;
+}
+.project-right span{
+  color: #000;
+}
+.overlay{
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 400;
+  color:#000;
 }
 .alt-send-button:hover {
   transform: translate3d(0px, -29px, 0px);
@@ -300,6 +320,7 @@
   .direct-contact-container {
     margin-top: 60px;
     max-width: 300px;
+
   }    
   .social-media-list li {
     height: 60px;
