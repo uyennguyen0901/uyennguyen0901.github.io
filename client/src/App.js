@@ -93,7 +93,7 @@ function App() {
     } else {
         alert('Please fill out all the fields!');
     }
-  fetch('http://localhost:3000/send-email', {
+  fetch('/send-email', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
