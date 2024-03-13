@@ -316,7 +316,13 @@
   .direct-contact-container, .form-horizontal {
     margin: 0 auto;
   }  
-  
+  .project{
+    display: block;
+    
+  }
+  .project-right{
+    margin-left: 0px;
+  }
   .direct-contact-container {
     margin-top: 60px;
     max-width: 300px;
@@ -344,7 +350,16 @@
     
     margin: 0 auto;
   }
- 
+  .project{
+    display: block;
+    font-size: 22px;
+  }
+  .project-right{
+    margin-left: 0px;
+  }
+  .overlay{
+    font-size: 15px;
+  }
   
   .name, .email, textarea {
     width: 280px;
@@ -374,6 +389,16 @@
 @media screen and (max-width: 410px) {
   .send-button {
     width: 99%;
+  }
+  .project{
+    display: block;
+    font-size: 22px;
+  }
+  .project-right{
+    margin-left: 0px;
+  }
+  .overlay{
+    font-size: 15px;
   }
 }
 
@@ -431,6 +456,7 @@
     .intro strong {
         font-size:2.6rem
     }
+    
 }
 
 .cls-1,.cls-2 {
