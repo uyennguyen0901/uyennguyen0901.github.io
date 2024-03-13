@@ -7,7 +7,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import yensao from './imgs/Yensao.png'
 import foxipe from './imgs/Foxipe.png'
+import earth from './imgs/Earth.png'
 import animation from './imgs/animationgame.png'
+import survey from './imgs/Living.png'
 import hole from './imgs/holeinground.png'
 import Option from './OptionsList';
 import Intro from './Intro';
@@ -236,6 +238,7 @@ function App() {
               <ProgressBar label="React JS" percentage={70} />
               <ProgressBar label="Node JS" percentage={65} />
               <ProgressBar label="Express" percentage={50} />
+              <ProgressBar label="TypeScript" percentage={40} />
               <ProgressBar label="SQL" percentage={75} />
             </div>
             <div class="col-lg-6">
@@ -264,6 +267,15 @@ function App() {
             </div>
             <div class="project">
               <div class="project-left">
+                <a href="https://csci-4611-spring-2024.github.io/assignment-3-uyennguyen0901/">
+                  <img src={earth} alt="Earth"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Earthquake Visualization</span>
+                  <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
+                </a>
+              </div>
+            </div>
+            <div class="project">
+              <div class="project-left">
                 <a href="https://csci-4611-spring-2024.github.io/assignment-2-uyennguyen0901/">
                   <img src={hole} alt="hole"/>
                   <span className="link" style={{ transform: "translate(0px, 0px)" }}>Hole in the Ground</span>
@@ -271,15 +283,15 @@ function App() {
                 </a>
               </div>
             </div>
-            {/* <div class="project">
+            <div class="project">
               <div class="project-left">
-                <a href="#">
-                  <img src={yensao} alt="yensao"/>
-                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Yen Sao Phuong Dinh</span>
+                <a href="https://csci5117.onrender.com/">
+                  <img src={survey} alt="survey"/>
+                  <span className="link" style={{ transform: "translate(0px, 0px)" }}>Living Survey</span>
                   <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
                 </a>
               </div>
-            </div> */}
+            </div>
             <div class="project">
               <div class="project-left">
                 <a href="https://minhuyen.fun/">
@@ -289,15 +301,15 @@ function App() {
                 </a>
               </div>
             </div>
-            {/* <div class="project">
+            <div class="project">
               <div class="project-left">
-                <a href="#">
+                <a href="https://yensaophuongdinh.com/">
                   <img src={yensao} alt="yensao"/>
                   <span className="link" style={{ transform: "translate(0px, 0px)" }}>Yen Sao Phuong Dinh</span>
                   <span class="overlay" style={{ transformOrigin: '0px 0px', transform: 'scale(1, 0)' }}></span>
                 </a>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
