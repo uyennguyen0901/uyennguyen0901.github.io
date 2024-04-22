@@ -6,6 +6,7 @@ import earth from './imgs/Earth.png';
 import animation from './imgs/animationgame.png';
 import survey from './imgs/Living.png';
 import hole from './imgs/holeinground.png';
+import todo from './imgs/TodoList.png';
 const Project = ({ name, link, imageUrl, description, tech }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -42,6 +43,13 @@ const ProjectsSection = () => {
       imageUrl: foxipe,
       description: 'A recipe sharing platform.',
       tech: ['HTML', 'CSS', 'JavaScript', 'Python', 'Jinja', 'Flask', 'Postgres', 'Render', 'Azure Blob Storage', 'Reportlab', 'Github'],
+    },
+    {
+      name: 'Todo List',
+      link: 'https://kind-bush-0980ee40f.5.azurestaticapps.net/',
+      imageUrl: todo,
+      description: 'Todo List ',
+      tech: ['HTML', 'CSS', 'JavaScript', 'React', 'Azure Web Static', 'Azure Cosmos Mongodb', 'Github'],
     },
     {
       name: 'Earthquake Visualization',
